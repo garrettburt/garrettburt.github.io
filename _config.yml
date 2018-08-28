@@ -101,7 +101,7 @@ analytics:
 # Site Author
 author:
   name             : "Garrett Burt"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/images/avatar.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Data Science Porfolio"
   location         : "Salt Lake City, UT"
   email            :
