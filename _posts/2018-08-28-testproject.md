@@ -5,7 +5,7 @@ tags: [machine learning, data science]
 header:
   image: "/images/testproject/testheader2.jpeg"
 excerpt: "Machine Learning, CXP, Data Science"
-mathjax: true 
+mathjax: true
 
 ---
 
@@ -34,7 +34,7 @@ Here's a numbered list:
 2. Second
 3. Third
 
-Python code block
+/*Python code block
 ```python
     import numpy as np
     def test_function(x,y):
@@ -46,7 +46,7 @@ R code block:
   library(tidyverse)
   df <- read_csv(file = "some.csv")
   head(df)
-```
+```*/
 here's some inline code `x+y`
 
 here's some math:
