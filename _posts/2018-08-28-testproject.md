@@ -1,6 +1,6 @@
 ---
 title: "Name for project"
-date: 2018-01-28
+date: 2018-08-28
 tags: [machine learning, data science]
 header:
   image: "/images/testproject/testheader2.jpeg"
