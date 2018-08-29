@@ -13,8 +13,6 @@ effective decisions. With strong communication skills has the ability to communi
 non-technical audiences.
 
 ## Education
-### University of Wisconsin - La Crosse
-### M.S Data Science
+### University of Wisconsin - La Crosse: M.S Data Science
 
-### Brigham Young University
-### B.S Statistics: Applied Statistics & Analytics
+### Brigham Young University: B.S Statistics: Applied Statistics & Analytics
