@@ -5,4 +5,16 @@ permalink: /about/
 header:
   image: "/images/testheader2.jpeg"
 ---
-This is a test write something about myself. Aspiring data scientist with these skills and so on
+
+## Profile
+Aspiring Data Scientist with ability to deliver valuable insights via data analytics and advanced statistical
+methods. Has the ability to use statistical tests and methods to analyze information, draw conclusions, and make
+effective decisions. With strong communication skills has the ability to communicate with both technical and
+non-technical audiences.
+
+## Education
+### University of Wisconsin - La Crosse
+### M.S Data Science
+
+### Brigham Young University
+### B.S Statistics: Applied Statistics & Analytics
