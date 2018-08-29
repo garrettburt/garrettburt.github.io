@@ -31,4 +31,4 @@ Mining, Visualization and Unstructured Data Analysis, Ethics of Data Science, Pr
 - Relevant courses: R Programming, Regression, Methods of Survey Sampling, Design of Experiments,
 Analysis of Variance, SAS Programming, Communication of Statistical Results, Data Analytics, Discrete
 Probability
-- Acquired Skills: R-Programming, SAS Programming, SQL, L A TEX, Microsoft Excel
+- Acquired Skills: R-Programming, SAS Programming, SQL, Latex, Microsoft Excel
