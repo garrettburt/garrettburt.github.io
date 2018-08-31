@@ -18,7 +18,30 @@ We have received a data set from Fargo Health Group’s data repositories, on th
 The first step that was utilized in cleaning the data was ensuring that the dates on all four tabs from the separate health centers were in the same format. In the data set there were obvious mistypes in the data, such as  character values and extremely large values (I.e 9999999999). These data points were removed and treated as missing values. We were also informed that the data from October 2008 was an outlier due to exams being re-routed from the New Orleans HC because of a hurricane, this point was also treated as a missing value. Next, each of the data sets from the four hospitals was filtered down to cardiovascular tests only and tests that had Abbeville as the original hospital location. Research was conducted on each examination description to ensure that we only included those that were potentially related to the heart. For each of the four HCs we then took a subset of only those in the second week of May 2007(May 6, 2007 – May 12, 2007) and counted the total number of exams, which was then added to the total in the Abbeville sheet. We did the same thing for May, June, and July of 2013, in which there were exams routed from Abbeville to the other locations. At this point our data set was clean and we were ready to account for the values that were missing.
 # Imputation of Missing Values
 
-After cleaning the data set we were ready to address the issue of the values that were missing from the data set. There are 3 types of missing data, MCAR(Missing completely at random), MAR(Missing at random), and NMAR(Not missing at random). MCAR is the desired scenario when it comes to missing data, and to the best of our knowledge this data is missing completely at random. It should be noted that the ratio of missing values to non-missing values also plays a part in determining if imputation is appropriate. With this data set the ratio of missing values to non-missing values was a little high, and should be revisited for implementation of the predictive model into production. After we knew that it would be appropriate to impute the variables that were missing we needed to determine which imputation method we would use. There are different approaches that can be taken, such as; Complete Case Analysis, Multiple Imputation, Simple (non-stochastic) Imputation among others. Complete Case Analysis is performed by completely deleting any row with one ore more missing values. Simple Imputation is performed by replacing all missing values with a single decided value (such as the mean, median, mode). In multiple imputation, the missing values are imputed by Gibbs sampling. By default, each variable with missing values is predicted from all other variables in the data set. Compared to the other methods we felt that this was the most rigorous approach that would  produce the best results. Therefore the method that we used to impute the missing values is Multiple Imputation, utilizing the Multivariate Imputation by Chained Equations (MICE) package in R.  We were able to come up with 5 different imputation sets for the missing values, as pictured in the following visualization.
+After cleaning the data set we were ready to address the issue of the values that were missing from the data set. There are 3 types of missing data, MCAR(Missing completely at random), MAR(Missing at random), and NMAR(Not missing at random). MCAR is the desired scenario when it comes to missing data, and to the best of our knowledge this data is missing completely at random. It should be noted that the ratio of missing values to non-missing values also plays a part in determining if imputation is appropriate. With this data set the ratio of missing values to non-missing values was a little high, and should be revisited for implementation of the predictive model into production. After we knew that it would be appropriate to impute the variables that were missing we needed to determine which imputation method we would use. There are different approaches that can be taken, such as; Complete Case Analysis, Multiple Imputation, Simple (non-stochastic) Imputation among others. Complete Case Analysis is performed by completely deleting any row with one ore more missing values. Simple Imputation is performed by replacing all missing values with a single decided value (such as the mean, median, mode). In multiple imputation, the missing values are imputed by Gibbs sampling. By default, each variable with missing values is predicted from all other variables in the data set. Compared to the other methods we felt that this was the most rigorous approach that would  produce the best results. Therefore the method that we used to impute the missing values is Multiple Imputation, utilizing the Multivariate Imputation by Chained Equations (MICE) package in R.  
+
+```r
+# Identify Missing Values
+#list the rows that do not have missing values
+complete.cases <- abbeville[complete.cases(abbeville),]
+nrow(complete.cases)
+#list the rows that have one or more missing values
+missing.vals <- abbeville[!complete.cases(abbeville),]
+nrow(missing.vals)
+
+# Multiple Imputation
+library(mice)
+imp <- mice(abbeville, seed =1234)
+fit <- with(imp, lm(`Incoming Examinations`~Year+Month))
+pooled <- pool(fit)
+summary(pooled)
+imp #more info on imputation
+imp$imp$`Incoming Examinations` #shows you the 5 imputed values for each missing row
+```
+
+We were able to come up with 5 different imputation sets for the missing values, as pictured in the following visualization.
+
+
 
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/Imputation.jpeg)
