@@ -125,11 +125,12 @@ arima.forecast <- forecast(fit2, 12)
 accuracy(fit2)
 plot(forecast(fit2,12), main="ARIMA Forecast for Heart Examination Requests - Abbeville")
 ```
-![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/arimaPlot.jpeg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/arimaForecast.jpeg)
+
 
 The following graph depicts the cardiovascular examination requests for the Abbeville HC, with our predicted results for the year 2014 from our ARIMA model.
 
-![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/arimaForecast.jpeg)
+![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/arimaPlot.jpeg)
 
 # Results
 Based on the two models that we were able to create, the Holt-Winters Exponential Smoothing model has a much lower AIC. We can also use the Mean Absolute Error (MAE) to determine the accuracy of both of these models. The MAE for model 1 is 0.262 and the MAE for model 2 is 354.0396. Therefore the first model is more accurate for this situation. As such, we can see that there will be more cardiovascular examinations in 2014 than in 2013. There will also be a spike in June, as well as a lower period in May.
