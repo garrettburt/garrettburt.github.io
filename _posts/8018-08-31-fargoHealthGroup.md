@@ -53,10 +53,19 @@ After the data were cleaned and missing values appropriately accounted for, we b
 
 First, we wanted to analyze the time series to ensure that conditions were met and to determine which models we should use. The following graph shows the amount of incoming cardiovascular examinations in Abbeville.
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/originalTimeSeries.jpeg)
 
+As we can see the number of examinations from January of 2006 to December of 2013 shows a positive trend, and the number of examinations began to increase more drastically around 2011. We then decomposed the time series in order to determine if there is a season or trend component associated with the series. The following visualization contains the decomposition. As you can tell from the visualization there is a seasonal and trend component associated with this time series. Therefore we are able to use our forecasting models, as they require the data be seasonal.
 
-As we can see the number of examinations from January of 2006 to December of 2013 shows a positive trend, and the number of examinations began to increase more drastically around 2011. We then decomposed the time series in order to determine if there is a season or trend component associated with the series. The  visualization to the right contains the decomposition. As you can tell from the visualization there is a seasonal and trend component associated with this time series. Therefore we are able to use our forecasting models, as they require the data be seasonal.
-
+```r
+# Seasonal Decompisition
+labbevilleTS <- log(abbevilleTS)
+plot(labbevilleTS, ylab = "log(abbevilleTS)")
+fit <- stl(labbevilleTS, s.window= "period") #decomposes time-series
+plot(fit, main = 'Decomposed Abbeville Time Series')
+fit$time.series #components for each observation
+```
+![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/decomposition.jpeg)
 
 # Forecasting Models
 Model 1 – Holt-Winters Exponential Smoothing
