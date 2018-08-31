@@ -1,0 +1,340 @@
+
+---
+title: "Final Exam"
+author: "Garrett Burt - DS 705"
+output:
+  word_document: default
+  pdf_document: default
+fontsize: 12pt
+---
+
+Unlike the Homework RMD files, this one doesn't contain all of the questions.  Rather we want you to read the questions on D2L and use this RMD file to record your R code that you used to answer each question.  This file must knit correctly.  After you submit the D2L quiz, then upload this RMD file and the knitted version of this file to the Final Exam dropbox on D2L.
+
+## Questions 1-16
+
+You do not need to submit any work with these questions.  Just answer them in D2L.
+
+## Problem 1 - Questions 17-21
+
+You're going to analyze the data in BirdPecks.rda and answer the questions in D2l.  Put all of your R in the chunk below:
+
+```{r}
+require(DS705data)
+data(BirdPecks)
+
+bird1 <- subset(BirdPecks, group == 1)
+bird2 <- subset(BirdPecks, group == 2)
+
+#17
+with(BirdPecks, boxplot(pecks~group, xlab = 'Bird Group', ylab = 'Pecks'))
+with(bird1, hist(pecks, xlab = 'Group 1'))
+with(bird2, hist(pecks, xlab = 'Group 2'))
+
+#18
+with(bird1,shapiro.test(pecks))
+with(bird2,shapiro.test(pecks))
+
+#19
+library(boot)
+set.seed(1234)
+boot.df <- as.data.frame(cbind(BirdPecks$pecks, BirdPecks$group))
+names(boot.df) <- c('pecks', 'group')
+bootmeandiff <- function(d,i){
+  means <- tapply(d[i,1], d[,2], mean)
+  means[1] - means[2]
+}
+boot.object <- boot(boot.df, bootmeandiff, R = 5000, strata = boot.df$group)
+boot.ci(boot.object, conf=.90, type='bca')$bca[4:5]
+
+
+```
+
+---
+
+## Problem 2 - Questions 22-26
+
+Analyze StrengthSpeed.rda and put your R below:
+
+```{r}
+data("StrengthSpeed")
+
+# 23
+speed.diff <- StrengthSpeed$before - StrengthSpeed$after
+par(mfrow=c(1,2))
+boxplot(speed.diff)
+hist(speed.diff, main = 'Hist of Speed: Before vs After')
+par(mfrow=c(1,1))
+
+# T-test
+with(StrengthSpeed, t.test(before, after, paired = TRUE, conf.level = 0.90))
+
+
+```
+
+---
+
+## Problem 3 - Questions 27-36
+
+Analyze GroupHLT scores and put your R here:
+
+```{r}
+# 28
+hlt1<- c(79, 76, 74, 70, 81, 85, 73, 78, 69, 72, 83, 89, 72, 79, 75)
+hlt2<- c(78, 96, 85, 91, 77,103, 72, 93, 98, 86, 70, 110, 70, 91, 99)
+hlt <- cbind(hlt1, hlt2)
+
+score <- c(79, 76, 74, 70, 81, 85, 73, 78, 69, 72,
+              83, 89, 72, 79, 75,78, 96, 85, 91, 77,
+              103, 72, 93, 98, 86, 70, 110, 70, 91, 99)
+group <- c('group 1','group 1','group 1','group 1','group 1','group 1','group 1','group 1','group 1','group 1','group 1'
+           ,'group 1','group 1','group 1','group 1', 'group 2', 'group 2', 'group 2', 'group 2', 'group 2', 'group 2', 'group 2'
+           , 'group 2', 'group 2', 'group 2', 'group 2', 'group 2', 'group 2','group 2','group 2')
+new.df <- data.frame("Score" = score, "Group" = group)
+
+boxplot(hlt, main = 'HLT Boxplot')
+par(mfrow=c(1,2))
+hist(hlt1, main = 'Group 1 - Win')
+hist(hlt2, main = 'Group 2 - Lose')
+
+shapiro.test(hlt1)
+shapiro.test(hlt2)
+
+qqnorm(hlt1, main = 'Q-Q Plot: Group 1 - Win')
+qqline(hlt1)
+qqnorm(hlt2, main = 'Q-Q Plot: Group 2 - Lose')
+qqline(hlt2)
+par(mfrow=c(1,1))
+
+t.test(score~group, data = new.df, conf.int = TRUE)
+
+library(boot)
+set.seed(1234)
+bootMeanDiff <- function(d,i){
+  means <- tapply(d[i,1],d[,2], mean)
+  means[1]-means[2]
+}
+boot.object <- boot(new.df, bootMeanDiff, R = 2000, strata = new.df$Group)
+boot.ci(boot.object, conf=.95, type ='bca')$bca[4:5]
+```
+
+---
+
+## Problem 4 - Questions 37-41
+
+Analyze the data in treadware.rda and put your R here:
+
+```{r}
+data("treadwear")
+# 37
+tireA <- subset(treadwear, brand == 'A')
+tireB <- subset(treadwear, brand == 'B')
+tireC <- subset(treadwear, brand == 'C')
+tireD <- subset(treadwear, brand == 'D')
+
+comp.func <- function(x){
+  mean <- NULL
+  mean <- mean(x)
+  sd <- NULL
+  sd <- sd(x)
+  stat <- shapiro.test(x)$statistic
+  pval <- shapiro.test(x)$p.value
+  out <- rbind(mean, sd, stat, pval)
+  out
+}
+
+comp.func(tireA$wear)
+comp.func(tireB$wear)
+comp.func(tireC$wear)
+comp.func(tireD$wear)
+
+with(treadwear, boxplot(wear~brand))
+
+#38
+anova(lm(wear ~ brand, data = treadwear))
+
+#41
+onewayComp(wear~brand,data=treadwear,var.equal=TRUE, nboot = 10000,
+           adjust='one.step')$comp[,c(2,3,5,6)]
+```
+
+---
+
+## Problem 5 - Questions 42-59
+
+Analyze the data in diamond.rda and include your R here:
+
+```{r}
+data("diamond")
+
+#43
+with(diamond, plot(price, carat))
+with(diamond, scatter.smooth(price, carat))
+d.lm <- lm(price~carat, data = diamond)
+summary(d.lm)
+with(diamond, cor.test(price, carat))
+
+#48
+confint(d.lm)
+
+#50
+resids <- d.lm$residuals
+fitted.vals <- d.lm$fitted.values
+
+# Equal Variance
+plot(diamond$price, resids)
+abline(h=0, lty='dashed', col='red')
+require(lmtest)
+bptest(d.lm)
+
+# Normality
+par(mfrow=c(1,2))
+hist(resids)
+qqnorm(resids)
+qqline(resids)
+par(mfrow=c(1,1))
+
+shapiro.test(resids)
+
+```
+
+---
+
+## Problem 6 - Questions 60- 66
+
+Analyze the data in Shells.rda and include your R here:
+
+```{r}
+data("shells")
+
+r.lm <- lm(Y~., data = shells)
+null <- lm(Y~1, data = shells)
+sf.lm <- step(null, scope = list(lower = null, upper = r.lm), direction = "both")
+summary(sf.lm)
+
+require(HH)
+require(leaps)
+vif(sf.lm)
+
+#62
+mod.b <- lm(Y~ X1 + X2 + X2^2 + X4 + X6, data = shells)
+summary(mod.b)
+extractAIC(mod.b)
+```
+
+---
+
+## Problem 7 - Questions 67-70
+
+Analyze the "Primary News Source for Americans" data described in the problem statement.  Put your R below:
+
+```{r}
+observed <- c(38,20,15,42)
+proportions <- c(.45,.18,.16,.21)
+chisq.test(x=observed, p = proportions)
+
+
+
+```
+
+
+---
+
+## Problem 8 - Questions 71-75
+
+Analyze the data in cheese.rda and put your R below:
+
+```{r}
+data(cheese)
+
+cheese$accept <- ifelse(cheese$taste == 'Acceptable', 1, 0)
+cheese <- cheese[,-1]
+cheese.mod <- glm(accept~., data = cheese, family = 'binomial')
+summary(cheese.mod)
+
+#72
+exp(2.787)
+
+#74
+predict.val <- data.frame(acetic = 6, person = 'Child')
+predict(cheese.mod, predict.val, type = 'response')
+#75
+out <- predict(cheese.mod, predict.val, se.fit = TRUE)
+C = .95
+crit = qnorm(1-(1-C)/2)
+lower = exp(out$fit-crit*out$se.fit)/(1+exp(out$fit-crit*out$se.fit))
+upper = exp(out$fit+crit*out$se.fit)/(1+exp(out$fit+crit*out$se.fit))
+c(lower,upper)
+
+```
+
+---
+
+## Problem 9 - Questions 76-90
+
+Analyze the data in careerbarrier.rda and put your R below:
+
+```{r}
+library(psych)
+require(DS705data)
+load(file="careerbarrier.rda")
+mat <- cor(careerbarrier)
+cortest.bartlett(mat, n = nrow(careerbarrier))
+
+KMO(mat)
+
+#83
+careerbarrier2 <- careerbarrier[,-1]
+mat2 <- cor(careerbarrier2)
+cortest.bartlett(mat2, n = nrow(careerbarrier2))
+KMO(mat2)
+
+
+#87
+output <- princomp(careerbarrier2, cor = TRUE)
+plot(output, type = "lines")
+abline( h=1, lty=2)
+
+#89
+fa.out <- principal(careerbarrier2, nfactors = 5, rotate = "varimax")
+print.psych(fa.out, cut = .5, sort = TRUE)
+```
+
+---
+
+## Problem 10 - Questions 91-98
+
+Analyze the data on seat postion vs. nausea described in the problem.  Put your R below:
+
+```{r}
+mat <- matrix(c(98,264,110,321,161,280), nrow=2)
+rownames(mat) <- c('Nausea', 'No Nausea')
+colnames(mat) <- c('Front', 'Middle', 'Rear')
+addmargins(mat)
+
+
+successes <- c(98,110,161)
+sample.sizes <- c(362,431,441)
+prop.test(successes, sample.sizes, correct = FALSE)
+
+#95
+successes <- c(98,161)
+sample.sizes <- c(362, 441)
+prop.test(successes, sample.sizes, correct = FALSE, conf.level = 0.90)
+
+#97
+mat2 <- matrix(c(98,64,161,280), nrow = 2)
+rownames(mat2) <- c('Nausea', 'No Nausea')
+colnames(mat2) <- c('Front', 'Rear')
+addmargins(mat2)
+
+library(mosaic)
+oddsRatio(mat2, verbose = T)
+
+
+```
+
+---
+
+## Question 99
+
+Make sure both this RMD and the resulting knitted Word document are uploaded to the Dropbox "Final Exam R Code."
