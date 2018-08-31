@@ -4,10 +4,10 @@ date: 2018-08-31
 tags: [Data Science]
 header:
   image: "/images/fargo/testheader2.jpeg"
-excerpt: "Time Series Analysis, Fargo Health Group"
+excerpt: "Predictive Time Series Analysis"
 ---
 # Introduction and Problem Background
-*This project was completed in conjunction with the M.S. - Data Science program through the University of Wisconsin*
+*This project was completed for the M.S. - Data Science program through the University of Wisconsin*
 
 Over the years, Fargo Health Group has become recognized among patients through dedication to practicing medicine through teamwork. Among other current services, Fargo provides disability compensation benefits to thousands of patients every year. The disability examination process, which identifies who qualifies for this program, comprises of multiple steps and is extremely time-sensitive. A thirty-day timeframe has been put in place to avoid fees to the Regional Office of Health Oversight (ROHO). Due to the lack of examining physicians, Health Centers often do not have the capacity to meet this timeframe. When these Health Centers do not have the capacity to perform the requested examinations, the requests are routed to other Fargo Health Centers if they have extra availability. When the other in-network centers do not have availability the requests are sent out of network, costing Fargo much more than if the examination was done in-house. Fargo has decided that a data-driven planning of examining physicians at the Health Centers will reduce costs as well as minimize the fees paid to the ROHO. They have decided to conduct a pilot study in order to develop a predictive analytic product for the forecasting of these examinations.
 
