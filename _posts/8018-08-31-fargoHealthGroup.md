@@ -22,7 +22,7 @@ After cleaning the data set we were ready to address the issue of the values tha
 
 
 
-<img src="{{ site.url }}{{ site.baseurl }}//images/fargo/imputation.jpeg" alt="">
+<img src="{{ site.url }}{{ site.baseurl }}//images/fargo/imputation.png" alt="">
 
 
 
