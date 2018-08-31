@@ -32,3 +32,12 @@ Mining, Visualization and Unstructured Data Analysis, Ethics of Data Science, Pr
 Analysis of Variance, SAS Programming, Communication of Statistical Results, Data Analytics, Discrete
 Probability
 - Acquired Skills: R-Programming, SAS Programming, SQL, Latex, Microsoft Excel
+
+## Professional Experience
+### Connexion Point
+*Data Analyst, May 2017 - Present*
+- Responsible for analyzing data, creating and automating reports, and developing data visualizations
+- Utilize MySQL and R for analysis, data manipulation, ad-hoc queries, and other needs
+- Develop and automate scripts for ETL processes from data sources
+- Collaborate closely with operations, software development, management, information technology, etc
+- Implemented linux environment on workstation, comfortable working in linux environment

@@ -7,6 +7,7 @@ header:
 excerpt: "Time Series Analysis, Fargo Health Group"
 ---
 # Introduction and Problem Background
+*This project was completed in conjunction with the M.S. - Data Science program through the University of Wisconsin*
 Over the years, Fargo Health Group has become recognized among patients through dedication to practicing medicine through teamwork. Among other current services, Fargo provides disability compensation benefits to thousands of patients every year. The disability examination process, which identifies who qualifies for this program, comprises of multiple steps and is extremely time-sensitive. A thirty-day timeframe has been put in place to avoid fees to the Regional Office of Health Oversight (ROHO). Due to the lack of examining physicians, Health Centers often do not have the capacity to meet this timeframe. When these Health Centers do not have the capacity to perform the requested examinations, the requests are routed to other Fargo Health Centers if they have extra availability. When the other in-network centers do not have availability the requests are sent out of network, costing Fargo much more than if the examination was done in-house. Fargo has decided that a data-driven planning of examining physicians at the Health Centers will reduce costs as well as minimize the fees paid to the ROHO. They have decided to conduct a pilot study in order to develop a predictive analytic product for the forecasting of these examinations.
 
 Fargo Health group has hired us to provide this data driven approach to predicting disability examinations within their Health Centers. In order to implement this data driven approach, we will need to construct an effective forecasting model that will allow us to predict the number of examination requests within Fargo Health group’s Health Centers. We will construct multiple models and compare the results to determine which is the best. For the purpose of developing our models we will focus on cardiovascular examination requests for the Health Center located in Abbeville, Louisiana.
@@ -76,18 +77,58 @@ As you can tell from the visualization there is a seasonal and trend component a
 Model 1 – Holt-Winters Exponential Smoothing
 
 The first model was created using Holt-Winters Exponential Smoothing. Within Holt-Winter smoothing we have three smoothing parameters; alpha, beta and gamma. Alpha controls exponential decay for the level, beta controls exponential dcay for the slope and gamma controls exponential decay for the seasonal component. Using the forecast library in R, we can calculate the best parameters for our model. The parameters that we obtained are: alpha = 0.1648, beta = 1e-04 and gamma = 0.0012.
+```r
+library(forecast)
+fit1 <- ets(log(abbevilleTS), model = "AAA")
+fit1
+accuracy(fit1)
+pred <- forecast(fit1,12)
+pred
+pred.csv <- as.data.frame(pred)
+plot(pred, main="Holt- Winters Forecast for Heart Examination Requests - Abbeville",
+     ylab = "Log(Exams)", xlab= "Time")
+pred$mean <- exp(pred$mean)
+pred$lower <- exp(pred$lower)
+pred$upper <- exp(pred$upper)
+p <- cbind(pred$mean, pred$lower, pred$upper)
+dimnames(p)[[2]] <- c("mean", "lo 80", "lo 95", 'hi 80', 'hi 95')
+p
+
+```
 
 Using the forecast package in R we also obtain an AIC measure for the accuracy of our model. For this model the AIC = 273.4772. We are interested in predicting the next twelve months using our model, and when we do we obtain the results in the following chart. The chart has a mean estimate for the number of examinations in each month, followed by both an 80% and a 95% confidence interval for the number of examinations in each month.
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/hwForecast.jpeg)
+
 The following graph depicts the cardiovascular exams for the Abbeville hospital, with our predicted counts for the year of 2014, using Holt-Winters exponential smoothing.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/hwPlot.jpeg)
 
 Model 2 – Autoregressive Integrated Moving Average (ARIMA)
 
 The second model that we chose to use was an Autoregressive Integrated Moving Average, or ARIMA. We first checked the stationarity of the time series, and found that it is sufficient. We were able to again  utilize the forecast package in R and use the auto.arima function to fit an ARIMA model to our data. Using the function we determined that we should use an ARIMA(0,1,1) model to forecast the next twelve months. We also recorded an AIC value of 1486.18. The following is the output of our forecast.
+```r
+# Transforming Time series and assessing stationarity
+library(forecast)
+library(tseries)
+plot(abbevilleTS)
+ndiffs(abbevilleTS)
+dabbeville <- diff(abbevilleTS)
+plot(abbevilleTS)
+adf.test(abbevilleTS)
 
+# Fitting an ARIMA model
+fit2 <- auto.arima(abbevilleTS)
+fit2
+arima.forecast <- forecast(fit2, 12)
+accuracy(fit2)
+plot(forecast(fit2,12), main="ARIMA Forecast for Heart Examination Requests - Abbeville")
+```
+![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/arimaPlot.jpeg)
 
 The following graph depicts the cardiovascular examination requests for the Abbeville HC, with our predicted results for the year 2014 from our ARIMA model.
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/arimaForecast.jpeg)
 
 # Results
 Based on the two models that we were able to create, the Holt-Winters Exponential Smoothing model has a much lower AIC. We can also use the Mean Absolute Error (MAE) to determine the accuracy of both of these models. The MAE for model 1 is 0.262 and the MAE for model 2 is 354.0396. Therefore the first model is more accurate for this situation. As such, we can see that there will be more cardiovascular examinations in 2014 than in 2013. There will also be a spike in June, as well as a lower period in May.
