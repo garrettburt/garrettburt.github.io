@@ -55,7 +55,7 @@ First, we wanted to analyze the time series to ensure that conditions were met a
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/originalTimeSeries.jpeg)
 
-As we can see the number of examinations from January of 2006 to December of 2013 shows a positive trend, and the number of examinations began to increase more drastically around 2011. We then decomposed the time series in order to determine if there is a season or trend component associated with the series. The following visualization contains the decomposition. As you can tell from the visualization there is a seasonal and trend component associated with this time series. Therefore we are able to use our forecasting models, as they require the data be seasonal.
+As we can see the number of examinations from January of 2006 to December of 2013 shows a positive trend, and the number of examinations began to increase more drastically around 2011. We then decomposed the time series in order to determine if there is a season or trend component associated with the series. The following visualization contains the decomposition.
 
 ```r
 # Seasonal Decompisition
@@ -65,7 +65,12 @@ fit <- stl(labbevilleTS, s.window= "period") #decomposes time-series
 plot(fit, main = 'Decomposed Abbeville Time Series')
 fit$time.series #components for each observation
 ```
+
 ![alt]({{ site.url }}{{ site.baseurl }}/images/fargo/decomposition.jpeg)
+
+As you can tell from the visualization there is a seasonal and trend component associated with this time series. Therefore we are able to use our forecasting models, as they require the data be seasonal.
+
+
 
 # Forecasting Models
 Model 1 – Holt-Winters Exponential Smoothing
