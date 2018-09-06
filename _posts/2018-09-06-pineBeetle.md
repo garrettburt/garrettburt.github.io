@@ -37,7 +37,7 @@ mathjax: "true"
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/pineBeetle/model.jpeg)
 
-$$ log(\frac{p_i}{1 - p_i}) 	&=\beta_0 + \beta_1*AugustMax_i + \beta_2*Slope_i + \beta_3*Precip_i + \beta_4*(Region_i = NE) + \beta_5*(Region_i = NC) + \beta_6*(Region_i = EC) + \beta_7*(Region_i = SE) $$
+<!--$$ log(\frac{p_i}{1 - p_i}) 	&=\beta_0 + \beta_1*AugustMax_i + \beta_2*Slope_i + \beta_3*Precip_i + \beta_4*(Region_i = NE) + \beta_5*(Region_i = NC) + \beta_6*(Region_i = EC) + \beta_7*(Region_i = SE) $$-->
 
 As aforementioned, there are certain assumptions that need to be met for us to be able to use this logistic regression model to analyze our data. As mentioned above, the data need to be linear in log-odds as well as independent. As shown in the above scatter plots, we can see that our data are indeed monotone in probability, and we are willing to assume that one area being infested does not affect the infestation status of another area.
 
