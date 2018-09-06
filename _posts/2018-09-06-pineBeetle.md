@@ -77,8 +77,6 @@ The model we constructed is as follows:
 
 <!--$$ log(\frac{p_i}{1 - p_i}) 	&=\beta_0 + \beta_1*AugustMax_i + \beta_2*Slope_i + \beta_3*Precip_i + \beta_4*(Region_i = NE) + \beta_5*(Region_i = NC) + \beta_6*(Region_i = EC) + \beta_7*(Region_i = SE) $$-->
 
-As aforementioned, there are certain assumptions that need to be met for us to be able to use this logistic regression model to analyze our data. As mentioned above, the data need to be linear in log-odds as well as independent. As shown in the above scatter plots, we can see that our data are indeed monotone in probability, and we are willing to assume that one area being infested does not affect the infestation status of another area.
-
 In order to gain a deeper understanding into what this model tells us, we will interpret two of our explanatory variables in context. First, we will interpret the effect of precipitation on the log odds ratio, if we increase precipitation by 1 unit, holding all else constant, then the log odds ratio will increase by $$\beta_3$$. Second, we will interpret one of our categorical variables. Due to the fact that we split the "Region" variable into separate indicator variables(NE: "Yes" or "No" etc.), we do not have a region as a part of our baseline level. The baseline for our categorical indicator variables included in the model, is that they are not in that region. For example, we can say that someone in the North East region is $$e^{\beta_4}$$ times more likely to be infested by mountain pine beetles.
 
 # Results
