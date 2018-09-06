@@ -110,7 +110,7 @@ Slope & 0.206 & 0.123 & 0.292 & 13.127 & 33.970 &\\
 \end{table}-->
 
 
-Using the same logic that was used in the previous section, we can interpret these values fairly easily. We can say for example: We are 95 confident, that as we increase precipitation by 1 unit - holding all else constant - that the chance of a region being infested increasing by an amount between 0.12 and 0.288.
+Using the same logic that was used in the previous section, we can interpret these values fairly easily. We can say for example: We are 95% confident, that as we increase precipitation by 1 unit - holding all else constant - that the chance of a region being infested increasing by an amount between 0.12 and 0.288.
 
 Now that the model has been fitted, we can determine how well it does at predicting the probability of an area being infested with beetles. The method that we can utilize to determine how well the model predicts, is to use cross-validation to determine a misclassification rate. Essentially, we will take out a handful of data points, and use the rest of our data to predict those points. Misclassification occurs when we predict a region to be infested when it actually was not - or predict that it is not infested when it actually was. After performing these cross-validations, we were able to determine a proper threshold value. A threshold is essentially the probability value we will use as a cutoff in determining whether to classify a region as being infested or not. The following graph displays the misclassification rates for the different possible cutoff values. The threshold value we obtained was 0.434343 - or 43.43%.
 ```r
