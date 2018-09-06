@@ -11,6 +11,7 @@ mathjax: "true"
 # Introduction and Problem Background
 
 *This project was completed for the B.S. - Statistics program through Brigham Young University*
+
   The mountain pine beetle (MPB), is an insect that is found most prevalently in mature pine trees - specifically in the western United States. These beetles typically play an important role in the ecology of an ecosystem, by focusing their attacks on weakened trees they assist in the development of a younger, more healthy forest. Due to the onset of dry conditions and warmer summers, these beetles have been affecting tree mortality rates in conifer forests - such as ponderosas and lodgepole pines. These MBP outbreaks have cause much damage in different regions of the western United States. Researchers are interested in determining what factors contribute most to an area being subject to one of these outbreaks. If we are able to determine the relationships between certain factors and if the area is infested with mountain pine beetles, we will be able to then use statistical modeling to predict in which areas future infestation may occur.
 
   In order to more fully understand this relationship, researchers have obtained data from an annual aerial detection survey conducted by the Colorado State Forest Service (CSFS). The gridded area in the left panel of Figure 1 displays the region of interest for this study.
