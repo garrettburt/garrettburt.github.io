@@ -1,6 +1,6 @@
 ---
 title: "Mountain Pine Beetle Analysis"
-date: 2018-09-06
+date: 2017-04-28
 tags: [Data Science]
 header:
   image: "/images/fargo/testheader2.jpeg"
