@@ -160,7 +160,7 @@ Totals & 647   & 1663      & 2310 &\\
 The table is formally known as a confusion matrix, and enables us to calculate four different metrics to help us gain this understanding. The four measurements are: sensitivity - the percent of true positives, specificity – the percent of true negatives, positive predictive value – the percent of correctly predicted yes’s, and negative predictive value – the percent of correctly predicted no’s. These values are easily calculated from the confusion matrix, and are: 97.41%, 32.15%, 78.68%, and 82.87% respectively. These values show that our data do well of classifying our predictions, so we feel confident using our model to classify regions. We also calculated a pseudo-$R^2$, which helps us understand how well our model fits our data. The value we obtained was 0.1583486, which means that 15.8% of the variability in log-odds probability of being infested is explained by our model. This is not the best pseudo-$$R^2$$, but it is sufficient.
 
 
-# Conclusions
+# Predictions
 With a logistic regression model that has all assumptions met, the model can be used to predict for all regions, or for one region specifically. The methods used in these predictions are fairly simple, and essentially we can take the characteristics of an area of interest and plug them into the model to obtain a probability that the region will be infested by beetles.
 
 We received a prior request to predict the probability of pine beetle infestation in a particular area. The area that we are interested in predicting for is located in the South East region, has a slope of 18.07, and an elevation of 1901.95.
