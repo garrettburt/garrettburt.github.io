@@ -24,7 +24,7 @@ mathjax: "true"
 
   ```r
   for (i in 1:5){
-  scatter.smooth(mpb[,i], mpb$infested, ylab="Infested", xlab=colnames(mpb[i]), col="dark grey", ylim=c(0,1))
+    scatter.smooth(mpb[,i], mpb$infested, ylab="Infested", xlab=colnames(mpb[i]), col="dark grey", ylim=c(0,1))
   }
 ```
 
