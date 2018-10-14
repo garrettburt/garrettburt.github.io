@@ -7,7 +7,7 @@ header:
 ---
 
 ## Profile
-Data Science Professional with ability to deliver valuable insights via data analytics and advanced statistical
+Data Science Professional with the ability to deliver valuable insights via data analytics and advanced statistical
 methods. Has the ability to use statistical tests and methods to analyze information, draw conclusions, and make
 effective decisions. With strong communication skills has the ability to communicate with both technical and
 non-technical audiences.
