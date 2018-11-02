@@ -13,8 +13,8 @@ effective decisions. With strong communication skills has the ability to communi
 non-technical audiences.
 
 ## Technical skills
-- Programming/Database Languages: R, SQL/MySQL, Python, SAS, C++
-- Other: Statistical Methods(Regression, AVOVA, Time-Series, Factor Analysis, Classification), Machine Learning, Data Visualization (Tableau, R-Shiny, Spotfire), ETL
+- Software and Programming: R, Python(numpy, scikit-learn, pandas, flask), SAS, SQL/MySQL, LATEX, C++, Data Visualization: Tableau, R Shiny, Spotfire
+- Other: Statistical Methods(Regression, AVOVA, Time-Series, Factor Analysis, Classification), Machine Learning, Data Visualization, Developing ETL processes
 
 ## Education
 ### University of Wisconsin - La Crosse
