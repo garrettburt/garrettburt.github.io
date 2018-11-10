@@ -35,7 +35,7 @@ require(leaps)
 ###################################
 ```
 
-The next step in preparing the data was to eliminate variables that would not be useful as predictors. Due to the fact that we are lacking in the domain understanding of this data, there were only a few variables that we were able to eliminate non-statistically that would not be useful as predictors. These variables were 'loanID','totalPaid', and 'employment'. LoanID is obviously not important in prediction. TotalPaid is the amount of money that was paid on a loan, and thus is not able to be determined until after a loan is issued. Employment is the job title for the potential customer, and has 21,401 levels. This variable is too broad and will not be able to prove useful as a predictor. In order to trim down the number of variables to the variables that would be the most efficient in predictions, we built a version 1 model with all of the variables. In this model we conducted the Wald test at an $\alpha = 0.05$ level on whether the coefficients for each of the variables was equal to 0, or in other words whether or not there was a relationship. We decided to keep the variables that have a significant relationship.
+The next step in preparing the data was to eliminate variables that would not be useful as predictors. Due to the fact that we are lacking in the domain understanding of this data, there were only a few variables that we were able to eliminate non-statistically that would not be useful as predictors. These variables were 'loanID','totalPaid', and 'employment'. LoanID is obviously not important in prediction. TotalPaid is the amount of money that was paid on a loan, and thus is not able to be determined until after a loan is issued. Employment is the job title for the potential customer, and has 21,401 levels. This variable is too broad and will not be able to prove useful as a predictor. In order to trim down the number of variables to the variables that would be the most efficient in predictions, we built a version 1 model with all of the variables. In this model we conducted the Wald test at an alpha = 0.05 level on whether the coefficients for each of the variables was equal to 0, or in other words whether or not there was a relationship. We decided to keep the variables that have a significant relationship.
 ```r
 # Create Response Variable
 loans <- subset(loans,!(loans$status %in% c('Current', 'In Grace Period', 'Late (31-120 days)', 'Late (16-30 days)', '')))
@@ -78,3 +78,106 @@ In order to address the skewness of these predictor variables, they were all tra
 We also created bar charts to explore the categorical variables within the dataset. As you can see in our data there were more good loans than bad loan, more 36 month loans than 60 month loans, the most common reason for loans was for debt consolidation, and the most common grades were C and B.
 
 ![alt]({{ site.url }}{{ site.baseurl }}/images/loan_predictions/bar.jpeg)
+
+We finally wanted to determine in a visual matter, if there was a relationship between good or bad loan status and some of our variables. The following graphs depict some of these relationships. While there are not huge differences for these 4 predictor variables specifically, there are some differences for good and bad loans. All of the predictor variables were inspected graphically, but these 4 appeared to have the strongest relationships.
+
+```r
+library(ggplot2)
+
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+
+  numPlots = length(plots)
+
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+
+ if (numPlots==1) {
+    print(plots[[1]])
+
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+
+g <- ggplot(updated.loans, aes(status.new,amount))
+p1 <- g + geom_boxplot()
+g2 <- ggplot(updated.loans, aes(status.new, debtIncRat))
+p2 <- g2 + geom_boxplot()
+g3 <- ggplot(updated.loans, aes(status.new, totalAcc))
+p3 <- g3 + geom_boxplot()
+g4 <- ggplot(updated.loans, aes(status.new, accOpen24))
+p4 <- g4 + geom_boxplot()
+multiplot(p1,p2,p3,p4, cols = 2)
+
+```
+![alt]({{ site.url }}{{ site.baseurl }}/images/loan_predictions/boxplot.jpeg)
+
+## Section 5: The Logistic Model
+After exploring the data and ensuring that the necessary transformations have been applied, we proceeded to construct the first-order logistic regression model from the variables chosen in the previous section. In order to train the model we randomly select 80% of the loans to be used for the model. We then performed cross-validation on the remaining 20% of the data to determine the accuracy of the model. The table below is a contingency table that compares the predicted values for the 20% test data to the actual outcome of those loans. As the table tells the model correctly predicted 76.83% of the loans in the test set as 'good' or 'bad' loans.
+
+```r
+set.seed(1234)
+sample <- sample.int(n = nrow(updated.loans), size = floor(.8*nrow(updated.loans)), replace = F)
+train <- updated.loans[sample,]
+train <- subset(train, select = -c(totalPaid))
+test <- updated.loans[-sample,]
+
+
+train.mod <- glm(status.new~., data = train, family = 'binomial')
+
+predTest <- predict(train.mod, test)  # get predicted probabilities
+
+threshhold <- 0.5  # Set Y=1 when predicted probability exceeds this
+predOut <- cut(predTest, breaks=c(-Inf, threshhold, Inf),
+                labels=c("Bad", "Good"))
+
+cTab <- table(test$status.new, predOut)
+addmargins(cTab)
+
+p <- sum(diag(cTab)) / sum(cTab)  # compute the proportion of correct classifications
+print(paste('Proportion correctly predicted = ', p))
+```
+![alt]({{ site.url }}{{ site.baseurl }}/images/loan_predictions/output.jpeg)
+
+## Section 6: Optimizing the Threshold for Accuracy
+After constructing the model we wanted to determine the optimal threshold to ensure that our predictions are the most accurate. The default threshold value is set at .5, meaning that if the predicted probability of a long is above .5 then we would classify that loan as 'good' and vice versa if it is below .5 we would classify it as 'bad'. We conducted an experiment with 100 different possible threshold values from 0-1, and determined which value had the lowest misclassification rate. After conducting this analysis is was determined that the optimal threshold for model accuracy is 0.5758. This would say that for the predicted probabilities, anything above 0.5758 would be classified as a 'good' loan and anything below would be a 'bad' loan. The plot depicts the proportion of values that are misclassified vs. the various threshold values.
+
+```r
+pred.probs <- predict.glm(v2.mod,type="response")
+thresh <- seq(0,1,length=100)
+misclass <- rep(NA,length=length(thresh))
+
+for(i in 1:length(thresh)) {
+  #If probability greater than threshold then 1 else 0
+  my.classification <- ifelse(pred.probs>thresh[i],'Good','Bad')
+  # calculate the pct where my classification not eq truth
+  misclass[i] <- mean(my.classification!=updated.loans$status.new)
+}
+#Find threshold which minimizes miclassification
+threshold <- thresh[which.min(misclass)]
+
+```
+
+## Section 8: Summary of Results
+In summary, the logistic regression model for classifying predictions of loans as 'good' vs 'bad' will be most accurate and enable the highest profits if a threshold value of 0.5757 is used. While using this value we were able to predict 'good' and 'bad' loans with roughly 80% accuracy. 
