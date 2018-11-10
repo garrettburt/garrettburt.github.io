@@ -1,6 +1,6 @@
 ---
 title: "Fargo Health Group - Time Series Analysis"
-date: 2018-08-31
+date: 2018-05-10
 tags: [Data Science]
 header:
   image: "/images/fargo/testheader2.jpeg"
