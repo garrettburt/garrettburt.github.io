@@ -34,6 +34,8 @@ require(HH)
 require(leaps)
 ###################################
 ```
+
+The next step in preparing the data was to eliminate variables that would not be useful as predictors. Due to the fact that we are lacking in the domain understanding of this data, there were only a few variables that we were able to eliminate non-statistically that would not be useful as predictors. These variables were 'loanID','totalPaid', and 'employment'. LoanID is obviously not important in prediction. TotalPaid is the amount of money that was paid on a loan, and thus is not able to be determined until after a loan is issued. Employment is the job title for the potential customer, and has 21,401 levels. This variable is too broad and will not be able to prove useful as a predictor. In order to trim down the number of variables to the variables that would be the most efficient in predictions, we built a version 1 model with all of the variables. In this model we conducted the Wald test at an $\alpha = 0.05$ level on whether the coefficients for each of the variables was equal to 0, or in other words whether or not there was a relationship. We decided to keep the variables that have a significant relationship.
 ```r
 # Create Response Variable
 loans <- subset(loans,!(loans$status %in% c('Current', 'In Grace Period', 'Late (31-120 days)', 'Late (16-30 days)', '')))
@@ -58,8 +60,21 @@ null <- lm(status.new~1, data = loans.clean)
 sf.lm <- step(null, scope = list(lower = null, upper = r.lm), direction = "both")
 summary(sf.lm)
 
+## Variables with significant relationship at alpha = .05
+updated.loans <- subset(loans.clean, select = c(amount, term, payment, grade, debtIncRat, reason, delinq2yr, inq6mth,
+                                                openAcc,revolRatio, totalAcc, totalRevLim, accOpen24, totalRevBal, totalIlLim,
+                                                status.new))
 
 ```
+## Section 4: Exploring and Transforming the Data
+After our data set was cleaned and prepared for analysis, we explored the data to look at the predictor variables, as well as look for trends or needed transformations. The below plot shows the histograms for each of the quantitative variables that we have kept. As you can see there are multiple variables that are very right-skewed.
 
+![alt]({{ site.url }}{{ site.baseurl }}/images/loan_predictions/pre_log.jpeg)
 
-The next step in preparing the data was to eliminate variables that would not be useful as predictors. Due to the fact that we are lacking in the domain understanding of this data, there were only a few variables that we were able to eliminate non-statistically that would not be useful as predictors. These variables were 'loanID','totalPaid', and 'employment'. LoanID is obviously not important in prediction. TotalPaid is the amount of money that was paid on a loan, and thus is not able to be determined until after a loan is issued. Employment is the job title for the potential customer, and has 21,401 levels. This variable is too broad and will not be able to prove useful as a predictor. In order to trim down the number of variables to the variables that would be the most efficient in predictions, we built a version 1 model with all of the variables. In this model we conducted the Wald test at an $\alpha = 0.05$ level on whether the coefficients for each of the variables was equal to 0, or in other words whether or not there was a relationship. We decided to keep the variables that have a significant relationship.
+In order to address the skewness of these predictor variables, they were all transformed with a log transformation. The following is the same plot, but including the transformed values. As you can see the variables are no longer as skewed.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/loan_predictions/post_log.jpeg)
+
+We also created bar charts to explore the categorical variables within the dataset. As you can see in our data there were more good loans than bad loan, more 36 month loans than 60 month loans, the most common reason for loans was for debt consolidation, and the most common grades were C and B.
+
+![alt]({{ site.url }}{{ site.baseurl }}/images/loan_predictions/bar.jpeg)
