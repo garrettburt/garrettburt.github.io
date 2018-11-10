@@ -55,22 +55,9 @@ loans.clean <- loans[complete.cases(loans),]
 
 r.lm <- lm(status.new~., data = loans.clean)
 null <- lm(status.new~1, data = loans.clean)
-#sf.lm <- step(null, scope = list(lower = null, upper = r.lm), direction = "both")
-#summary(sf.lm)
+sf.lm <- step(null, scope = list(lower = null, upper = r.lm), direction = "both")
+summary(sf.lm)
 
-
-#vif(sf.lm)
-
-
-initial.mod <- glm(status.new~., data= loans.clean, family = 'binomial')
-summary(initial.mod)
-
-updated.loans <- subset(loans.clean, select = c(amount, term, payment, grade, debtIncRat, reason, delinq2yr, inq6mth,
-                                                openAcc,revolRatio, totalAcc, totalRevLim, accOpen24, totalRevBal, totalIlLim,
-                                                status.new))
-
-v2.mod <- glm(status.new~., data = updated.loans, family = 'binomial')
-summary(v2.mod)
 
 ```
 
