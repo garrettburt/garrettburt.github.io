@@ -19,9 +19,8 @@ non-technical audiences.
 ## Education
 ### University of Wisconsin - La Crosse
 *M.S. Data Science - Expected Graduation: December 2019*
-- Relevant completed courses: Statistical Methods, Data Warehousing
-- Relevant upcoming courses: Programming for Data Science (Python and R), Big Data:
-High-Performance Computing (Hadoop, Pig, Hive, and Python), Communicating about data, Data
+- Relevant completed courses: Statistical Methods, Data Warehousing, Programming for Data Science (Python and R), Communicating about data
+- Relevant upcoming courses: Big Data: High-Performance Computing (Hadoop, Pig, Hive, and Python), Data
 Mining, Visualization and Unstructured Data Analysis, Ethics of Data Science, Prescriptive Analytics
 (Deep Learning), Data Science and Strategic Decision Making
 - Current Acquired Skills: R-Programming, SQL, Python, Data Warehousing
