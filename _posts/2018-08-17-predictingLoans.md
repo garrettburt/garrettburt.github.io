@@ -20,3 +20,59 @@ We suggest that the bank adopts this model in determining which potential custom
 For the purpose of this analysis, we are interested in predicting the likelihood that a potential customer will have a 'good' or a 'bad' outcome on a loan. We have a dataset containing data on 50,000 loans that will assist in the creation of our prediction model. In order to use this data for our model it will need to be cleaned and prepared for the analysis. In order to predict the likelihood of defaulting on a loan, we will use a logistic regression model. The reason that this model is the most appropriate, is because the outcome we are trying to predict is a binary response, either they will default or they will not. Throughout this report we will document the steps of the data cleansing, analysis, model preparation and implementation.
 
 ## Section 3: Preparing and Cleaning the Data
+In order for us to proceed with our analysis, the data that we have will need to be prepared and cleaned. The first step in doing this is to create one single response variable, which will be used in our logistic regression model. This variable needs to be binary, and will represent whether a loan was a 'good' loan or a 'bad' loan. In order to create this variable we needed to transform the original variable 'status'. First we removed loans that had not been resolved, because they will not be able to give us any information on whether a loan was considered 'good' or 'bad'. Next we combined the remaining status values into those two categories. This was done with the understanding that if a loan had been 'charged off' or had 'default' as the status it was considered a bad loan.
+
+We then needed to address the issue of missing values within the data set. There are many different techniques and approaches that can be taken when it comes to dealing with missing values, such as; Complete Case Analysis, Multiple Imputation, Simple (non-stochastic) Imputation among others. Complete Case Analysis is performed by completely deleting any row with one ore more missing values. Simple Imputation is performed by replacing all missing values with a single decided value (such as the mean, median, mode). In multiple imputation, the missing values are imputed by Gibbs sampling. If the data are missing completely at random, meaning that the chance of the data being missing is unrelated to any of the variables involved in our analysis, a complete case analysis and multiple imputation are both good options. We determined that for the sake of this analysis we would use a complete case analysis because, to the best of our knowledge, the data are missing completely at random. After cleaning and subsetting the data we had 34,655 loans and there were only 384 loans that were missing some form of information - which is only 1.1%. Thus we can use complete case analysis to delete these rows and our model will remained unbiased, and will essentially just be a slightly smaller sample of loans.
+```r
+###################################
+library(lmtest)
+library(MASS)
+library(GGally)
+library(bestglm)
+library(DataExplorer)
+require(HH)
+require(leaps)
+###################################
+```
+```r
+# Create Response Variable
+loans <- subset(loans,!(loans$status %in% c('Current', 'In Grace Period', 'Late (31-120 days)', 'Late (16-30 days)', '')))
+loans$status.new <- factor(ifelse(loans$status %in% c('Charged Off','Default'), 'Bad','Good'))
+# Eliminate unneccesary variables(totalpaid collected after and employement title factor w/21401 levels), will use variable selection method later
+loans <- subset(loans, select = -c(employment, loanID, status))
+# Missing values
+#list the rows that have one or more missing values
+missing.vals <- loans[!complete.cases(loans),]
+nrow(missing.vals)
+nrow(missing.vals)/nrow(loans)
+## plot_missing(loans)
+
+# Complete Case Analysis
+loans.clean <- loans[complete.cases(loans),]
+
+
+## Variable Selection
+
+r.lm <- lm(status.new~., data = loans.clean)
+null <- lm(status.new~1, data = loans.clean)
+#sf.lm <- step(null, scope = list(lower = null, upper = r.lm), direction = "both")
+#summary(sf.lm)
+
+
+#vif(sf.lm)
+
+
+initial.mod <- glm(status.new~., data= loans.clean, family = 'binomial')
+summary(initial.mod)
+
+updated.loans <- subset(loans.clean, select = c(amount, term, payment, grade, debtIncRat, reason, delinq2yr, inq6mth,
+                                                openAcc,revolRatio, totalAcc, totalRevLim, accOpen24, totalRevBal, totalIlLim,
+                                                status.new))
+
+v2.mod <- glm(status.new~., data = updated.loans, family = 'binomial')
+summary(v2.mod)
+
+```
+
+
+The next step in preparing the data was to eliminate variables that would not be useful as predictors. Due to the fact that we are lacking in the domain understanding of this data, there were only a few variables that we were able to eliminate non-statistically that would not be useful as predictors. These variables were 'loanID','totalPaid', and 'employment'. LoanID is obviously not important in prediction. TotalPaid is the amount of money that was paid on a loan, and thus is not able to be determined until after a loan is issued. Employment is the job title for the potential customer, and has 21,401 levels. This variable is too broad and will not be able to prove useful as a predictor. In order to trim down the number of variables to the variables that would be the most efficient in predictions, we built a version 1 model with all of the variables. In this model we conducted the Wald test at an $\alpha = 0.05$ level on whether the coefficients for each of the variables was equal to 0, or in other words whether or not there was a relationship. We decided to keep the variables that have a significant relationship.
