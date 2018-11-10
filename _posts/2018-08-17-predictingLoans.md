@@ -161,7 +161,7 @@ print(paste('Proportion correctly predicted = ', p))
 ![alt]({{ site.url }}{{ site.baseurl }}/images/loan_predictions/output.jpeg)
 
 ## Section 6: Optimizing the Threshold for Accuracy
-After constructing the model we wanted to determine the optimal threshold to ensure that our predictions are the most accurate. The default threshold value is set at .5, meaning that if the predicted probability of a long is above .5 then we would classify that loan as 'good' and vice versa if it is below .5 we would classify it as 'bad'. We conducted an experiment with 100 different possible threshold values from 0-1, and determined which value had the lowest misclassification rate. After conducting this analysis is was determined that the optimal threshold for model accuracy is 0.5758. This would say that for the predicted probabilities, anything above 0.5758 would be classified as a 'good' loan and anything below would be a 'bad' loan. The plot depicts the proportion of values that are misclassified vs. the various threshold values.
+After constructing the model we wanted to determine the optimal threshold to ensure that our predictions are the most accurate. The default threshold value is set at .5, meaning that if the predicted probability of a long is above .5 then we would classify that loan as 'good' and vice versa if it is below .5 we would classify it as 'bad'. We conducted an experiment with 100 different possible threshold values from 0-1, and determined which value had the lowest misclassification rate. After conducting this analysis is was determined that the optimal threshold for model accuracy is 0.5758. This would say that for the predicted probabilities, anything above 0.5758 would be classified as a 'good' loan and anything below would be a 'bad' loan.
 
 ```r
 pred.probs <- predict.glm(v2.mod,type="response")
@@ -180,4 +180,4 @@ threshold <- thresh[which.min(misclass)]
 ```
 
 ## Section 8: Summary of Results
-In summary, the logistic regression model for classifying predictions of loans as 'good' vs 'bad' will be most accurate and enable the highest profits if a threshold value of 0.5757 is used. While using this value we were able to predict 'good' and 'bad' loans with roughly 80% accuracy. 
+In summary, the logistic regression model for classifying predictions of loans as 'good' vs 'bad' will be most accurate and enable the highest profits if a threshold value of 0.5757 is used. While using this value we were able to predict 'good' and 'bad' loans with roughly 80% accuracy.
