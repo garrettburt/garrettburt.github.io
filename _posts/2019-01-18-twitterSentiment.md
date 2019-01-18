@@ -10,7 +10,7 @@ excerpt: "Sentiment Analysis"
 # Introduction
 *This project was completed for the M.S. - Data Science program through the University of Wisconsin*
 
-I live in Salt Lake City, Utah and I love basketball. Basketball has been a major part of my life, both in regards to being a player and a fan. I come from a family of emotional sports fans, and my emotions are very much tied to the outcomes of certain sporting events. For this analysis, I was interested to determine if other Utah Jazz basketball fans are in the same boat as myself. In order to answer this question I am turning to Twitter, where people openly post their thoughts to the internet. The hypothesis that I am posing is that, if the Jazz lose fans are going to express negative emotions.
+I live in Salt Lake City, Utah and I love basketball. Basketball has been a major part of my life, both in regards to being a player and a fan. I come from a family of emotional sports fans, and my emotions are very much tied to the outcomes of certain sporting events. For this analysis, I was interested to determine if other Utah Jazz basketball fans are in the same boat as myself. In order to answer this question I turned to Twitter, where people openly post their thoughts to the internet. The hypothesis that I posed is that, if the Jazz lose fans are going to express negative emotions.
 
 
 # Methods
