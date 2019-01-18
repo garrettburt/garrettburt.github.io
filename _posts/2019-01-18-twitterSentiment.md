@@ -135,3 +135,24 @@ loss_tweet_text = extract_tweet_text(loss_tweets)
 win_tweet_clean = [clean_text(tweet) for tweet in win_tweet_text]
 loss_tweet_clean = [clean_text(tweet) for tweet in loss_tweet_text]
 ```
+
+In order to determine if Jazz fans express positive or negative emotions, I needed to conduct a Sentiment Analysis of the tweets I collected. I decided to conduct a simple sentiment analysis using the NLTK library in Python. The most effective way to utilize this library is to have a training set to train the lexicon, but for the purposes of this project I decided to utilize a pre-built sentiment library to analyze each tweet. The output of the analysis is a sentiment score ranging from -1 to 1, with 1 being the most positive and -1 being the most negative.
+
+```python
+# Run each tweet in each dataset(win and loss) through the nltk_sentiment function (created in function section)
+# Join the results to the original tweets and return the final dataframe
+win_sent_results = [nltk_sentiment(tweet) for tweet in win_tweet_clean]
+win_results_df = pd.DataFrame(win_sent_results)
+win_df = pd.DataFrame(win_tweet_clean, columns = ['tweet'])
+win_sent_df = win_df.join(win_results_df)
+
+
+loss_sent_results = [nltk_sentiment(tweet) for tweet in loss_tweet_clean]
+loss_results_df = pd.DataFrame(loss_sent_results)
+loss_df = pd.DataFrame(loss_tweet_clean, columns = ['tweet'])
+loss_sent_df = loss_df.join(loss_results_df)
+```
+
+# Analysis
+After determing the sentiment for each of the tweets in both of the samples, I needed to test my hypothesis. In order to test this hypothesis, I decided to use a Welch Two Sample t-test of means - to test the mean sentiment for the tweets after a win and the tweets after a loss. The hypotheses of the test are as follows:
+![alt]({{ site.url }}{{ site.baseurl }}/images/twitter/twitter.jpeg)
