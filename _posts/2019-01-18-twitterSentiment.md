@@ -26,7 +26,7 @@ nltk.download('vader_lexicon')
 
 ```
 ```python
-%run '/Users/garrettburt/Documents/Personal/UW_MSDS/DS 710 - Programming/twitter_credentials.py'
+%run '/filepath/twitter_credentials.py'
 
 #Use tweepy.OAuthHandler to create an authentication using the given key and secret
 auth = tweepy.OAuthHandler(consumer_key=con_key, consumer_secret=con_secret)
@@ -155,4 +155,11 @@ loss_sent_df = loss_df.join(loss_results_df)
 
 # Analysis
 After determing the sentiment for each of the tweets in both of the samples, I needed to test my hypothesis. In order to test this hypothesis, I decided to use a Welch Two Sample t-test of means - to test the mean sentiment for the tweets after a win and the tweets after a loss. The hypotheses of the test are as follows:
+
 ![alt]({{ site.url }}{{ site.baseurl }}/images/twitter/twitter.jpeg)
+
+The Null Hypothesis is that the mean sentiment score is the same for the win as the sentiment score for the loss. The Alternative Hypothesis is that the mean sentiment score is higher for the win than the sentiment score for the loss - keep in mind that a higher sentiment score is a positive sentiment.
+The resulting p-value of the test was 0.8362, meaning that at the α = 0.05 level we do not have sufficient evidence to reject the null hypothesis that the mean sentiment score for wins is greater than the mean sentiment score for losses (with higher sentiment score meaning positive emotions).
+
+# Conclusions
+After conducting this analysis there are some key takeaways. According to the sentiment scores that I calculated, the emotions appear to be the same for wins and losses. A potential issue with how these scores were calculated is not using a proper training set to train the NLTK lexicon. Another issue could be that these two games could have been not very emotional. In order to truly determine if this is the case for all wins and losses, we would want to to a more robust test over the course of an entire season.
