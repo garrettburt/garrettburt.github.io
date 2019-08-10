@@ -7,22 +7,35 @@ header:
 ---
 
 ## Profile
-Data Science Professional with the ability to deliver valuable insights via data analytics and advanced statistical
+Data Scientist with ability to deliver valuable insights via data analytics and advanced statistical
 methods. Has the ability to use statistical tests and methods to analyze information, draw conclusions, and make
 effective decisions. With strong communication skills has the ability to communicate with both technical and
 non-technical audiences.
 
 ## Technical skills
-- Software and Programming: R, Python(numpy, scikit-learn, pandas, flask), SAS, SQL/MySQL, LATEX, C++, Data Visualization: Tableau, R Shiny, Spotfire
-- Other: Statistical Methods(Regression, AVOVA, Time-Series, Factor Analysis, Classification), Machine Learning, Data Visualization, Developing ETL processes
+- Programming/Database Languages: R, SQL/MySQL, Python, SAS, C++
+- Other: Statistical Methods(Regression, AVOVA, Time-Series, Factor Analysis, Classification), Machine Learning, Data Visualization (Tableau, R-Shiny, Spotfire), ETL
+
+
+## Professional Experience
+### Aetna, a CVS Health Company
+*Data Scientist, May 2019 - Present*
+
+### Connexion Point
+*Data Analyst, May 2017 - May 2019*
+- Responsible for analyzing data, creating and automating reports, and developing data visualizations
+- Utilize MySQL and R for analysis, data manipulation, ad-hoc queries, and other needs
+- Develop and automate scripts for ETL processes from data sources
+- Collaborate closely with operations, software development, management, information technology, etc
+- Implemented linux environment on workstation, comfortable working in linux environment
 
 ## Education
 ### University of Wisconsin - La Crosse
-*M.S. Data Science - Expected Graduation: December 2019*
-- Relevant completed courses: Statistical Methods, Data Warehousing, Programming for Data Science (Python and R), Communicating about data
-- Relevant upcoming courses: Big Data: High-Performance Computing (Hadoop, Pig, Hive, and Python), Data
-Mining, Visualization and Unstructured Data Analysis, Ethics of Data Science, Prescriptive Analytics
-(Deep Learning), Data Science and Strategic Decision Making
+*M.S. Data Science - Expected Graduation: 2020*
+- Relevant completed courses: Statistical Methods, Data Warehousing, Programming for Data Science (Python and R), Big Data:
+High-Performance Computing (Hadoop, Pig, Hive, and Python), Communicating about data, Data
+Mining, Ethics of Data Science,
+- Relevant upcoming courses: Prescriptive Analytics(Deep Learning), Visualization and Unstructured Data Analysis, Data Science and Strategic Decision Making
 - Current Acquired Skills: R-Programming, SQL, Python, Data Warehousing
 
 ### Brigham Young University
@@ -31,12 +44,3 @@ Mining, Visualization and Unstructured Data Analysis, Ethics of Data Science, Pr
 Analysis of Variance, SAS Programming, Communication of Statistical Results, Data Analytics, Discrete
 Probability
 - Acquired Skills: R-Programming, SAS Programming, SQL, Latex, Microsoft Excel
-
-## Professional Experience
-### Connexion Point
-*Data Analyst, May 2017 - Present*
-- Responsible for analyzing data, creating and automating reports, and developing data visualizations
-- Utilize MySQL and R for analysis, data manipulation, ad-hoc queries, and other needs
-- Develop and automate scripts for ETL processes from data sources
-- Collaborate closely with operations, software development, management, information technology, etc
-- Implemented linux environment on workstation, comfortable working in linux environment
