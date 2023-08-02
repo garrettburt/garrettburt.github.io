@@ -7,19 +7,33 @@ header:
 ---
 
 ## Profile
-Data Scientist with ability to deliver valuable insights via data analytics and advanced statistical
-methods. Has the ability to use statistical tests and methods to analyze information, draw conclusions, and make
-effective decisions. With strong communication skills has the ability to communicate with both technical and
-non-technical audiences.
+Accomplished Sr. Data Scientist skilled in delivering valuable insights through data analytics and advanced statistical methods. Expert at leveraging technical skills to analyze information, drive effective decision-making, and communicate with diverse audiences. Adept at delivering technical trainings, mentoring junior colleagues, and championing data-driven decision making
 
 ## Technical skills
-- Programming/Database Languages: R, SQL/MySQL, Python, SAS, C++
-- Other: Statistical Methods(Regression, AVOVA, Time-Series, Factor Analysis, Classification), Machine Learning, Data Visualization (Tableau, R-Shiny, Spotfire), ETL
+- Programming/Database Languages: R, Python, R-Shiny, ML/Big Data Tools (Hadoop/Spark/H2O), SQL/MySQL
+- Other: Machine Learning, Statistical Methods, Predictive Modeling, Experimental Design
 
 
 ## Professional Experience
-### Aetna, a CVS Health Company
-*Data Scientist, May 2019 - Present*
+### Utah State University
+*Adjunct Instructor*
+- Instruct the "Introduction to Modern Data Analytics" online course at Utah State University, imparting fundamental data analysis techniques and modern tool experience
+- Collaborate in development of course content, including virtual hands-on lab sessions, equipping students with practical real-world data analytics skills
+
+### CVS Health
+*Sr. Data Scientist, April 2021 - Present*
+- Develop, validate and execute algorithms and predictive models to investigate problems, detect patterns and recommend solutions
+- Lead development of multiple data applications that offer advanced analytics capabilities to many business partners
+- Perform analyses of large volumes of data to solve complex business problems utilizing advanced statistical techniques, machine learning algorithms, and mathematical analyses
+- Coordinate complex projects with other data scientists and data engineers
+- Conduct various technical trainings for large groups and provide mentorship and coaching to junior colleagues
+
+### CVS Health
+*Data Scientist, May 2019 - April 2021*
+- Assisted in developing, validating and executing algorithms and predictive models to investigate problems, detect patterns and recommend solutions
+- Developed analyses used in overall CVS Enterprise decision making processes
+- Performed analyses on large volumes of data to assist in solving business problems
+- Designed pipelines for repeat data analytics requests to maximize efficiency
 
 ### Connexion Point
 *Data Analyst, May 2017 - May 2019*
@@ -32,15 +46,6 @@ non-technical audiences.
 ## Education
 ### University of Wisconsin - La Crosse
 *M.S. Data Science - Expected Graduation: 2020*
-- Relevant completed courses: Statistical Methods, Data Warehousing, Programming for Data Science (Python and R), Big Data:
-High-Performance Computing (Hadoop, Pig, Hive, and Python), Communicating about data, Data
-Mining, Ethics of Data Science,
-- Relevant upcoming courses: Prescriptive Analytics(Deep Learning), Visualization and Unstructured Data Analysis, Data Science and Strategic Decision Making
-- Current Acquired Skills: R-Programming, SQL, Python, Data Warehousing
 
 ### Brigham Young University
 *B.S. Statistics, Applied Statistics & Analytics - April 2017*
-- Relevant courses: R Programming, Regression, Methods of Survey Sampling, Design of Experiments,
-Analysis of Variance, SAS Programming, Communication of Statistical Results, Data Analytics, Discrete
-Probability
-- Acquired Skills: R-Programming, SAS Programming, SQL, Latex, Microsoft Excel
