@@ -10,7 +10,7 @@ header:
 Accomplished Sr. Data Scientist skilled in delivering valuable insights through data analytics and advanced statistical methods. Expert at leveraging technical skills to analyze information, drive effective decision-making, and communicate with diverse audiences. Adept at delivering technical trainings, mentoring junior colleagues, and championing data-driven decision making
 
 ## Technical skills
-- Programming/Database Languages: R, Python, R-Shiny, ML/Big Data Tools (Hadoop/Spark/H2O), SQL/MySQL
+- Programming/Database Languages: R, Python, R-Shiny, ML/Big Data Tools (Hadoop/Spark/H2O), SQL
 - Other: Machine Learning, Statistical Methods, Predictive Modeling, Experimental Design
 
 
