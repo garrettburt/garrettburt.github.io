@@ -19,7 +19,7 @@ locale                   : "en-US"
 title                    : "Garrett Burt"
 title_separator          : "-"
 name                     : "Garrett Burt"
-description              : "Data Scientist"
+description              : "Sr. Data Scientist"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -102,8 +102,8 @@ analytics:
 author:
   name             : "Garrett Burt"
   avatar           : "/images/avatar.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Data Scientist"
-  location         : "New York City, NY"
+  bio              : "Sr. Data Scientist"
+  location         : "Lehi, UT"
   email            : burt.garrett33@gmail.com
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
