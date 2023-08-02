@@ -16,7 +16,7 @@ Accomplished Sr. Data Scientist skilled in delivering valuable insights through 
 
 ## Professional Experience
 ### Utah State University
-*Adjunct Instructor*
+*Adjunct Instructor, December 2022 - Present*
 - Instruct the "Introduction to Modern Data Analytics" online course at Utah State University, imparting fundamental data analysis techniques and modern tool experience
 - Collaborate in development of course content, including virtual hands-on lab sessions, equipping students with practical real-world data analytics skills
 
