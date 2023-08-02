@@ -15,11 +15,6 @@ Accomplished Sr. Data Scientist skilled in delivering valuable insights through 
 
 
 ## Professional Experience
-### Utah State University
-*Adjunct Instructor, December 2022 - Present*
-- Instruct the "Introduction to Modern Data Analytics" online course at Utah State University, imparting fundamental data analysis techniques and modern tool experience
-- Collaborate in development of course content, including virtual hands-on lab sessions, equipping students with practical real-world data analytics skills
-
 ### CVS Health
 *Sr. Data Scientist, April 2021 - Present*
 - Develop, validate and execute algorithms and predictive models to investigate problems, detect patterns and recommend solutions
@@ -27,6 +22,12 @@ Accomplished Sr. Data Scientist skilled in delivering valuable insights through 
 - Perform analyses of large volumes of data to solve complex business problems utilizing advanced statistical techniques, machine learning algorithms, and mathematical analyses
 - Coordinate complex projects with other data scientists and data engineers
 - Conduct various technical trainings for large groups and provide mentorship and coaching to junior colleagues
+
+### Utah State University
+*Adjunct Instructor, December 2022 - Present*
+- Instruct the "Introduction to Modern Data Analytics" online course at Utah State University, imparting fundamental data analysis techniques and modern tool experience
+- Collaborate in development of course content, including virtual hands-on lab sessions, equipping students with practical real-world data analytics skills
+
 
 ### CVS Health
 *Data Scientist, May 2019 - April 2021*
@@ -37,11 +38,10 @@ Accomplished Sr. Data Scientist skilled in delivering valuable insights through 
 
 ### Connexion Point
 *Data Analyst, May 2017 - May 2019*
-- Responsible for analyzing data, creating and automating reports, and developing data visualizations
-- Utilize MySQL and R for analysis, data manipulation, ad-hoc queries, and other needs
-- Develop and automate scripts for ETL processes from data sources
-- Collaborate closely with operations, software development, management, information technology, etc
-- Implemented linux environment on workstation, comfortable working in linux environment
+- Analyzed data, created and automated reports, and developed data visualizations
+- Utilized MySQL and R for analysis, data manipulation, ad-hoc queries, and other needs
+- Developed and automated scripts for ETL processes from data sources
+- Collaborated closely with operations, software development, management, information technology, etc
 
 ## Education
 ### University of Wisconsin - La Crosse
