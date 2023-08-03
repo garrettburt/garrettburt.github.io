@@ -4,11 +4,12 @@ date: 2023-08-03
 tags: [Data Science]
 header:
   image: "/images/fargo/testheader2.jpeg"
-excerpt: "ML w/H2O"
+excerpt: "Machine Learning w/H2O"
 ---
 
 # Introduction
 *Due to the proprietary nature of my work these are examples of recent work completed*
+
 Utilizing H2O is an open source platform that makes it easy for companies to utilize Big Data to deploy AI and deep learning to solve complex problems. In my experience I have used H2O in the final data preparation stages of the modeling process, the training process, validation process and model selection process. I have similar experience with SparklyR - and both are comparable but with the robustness of H2O we are able to train on much larger datasets. Below is an example of a potential use-case of taking a data set and fitting multiple models to that dataset and determining which performs the best.
 
 
